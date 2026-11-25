@@ -1,17 +1,17 @@
-# First SAD LinkedIn post — DRAFT, not published
+# First LinkedIn update (draft, not posted)
 
-🚀 Introducing Smol Arm Dynamics (SAD)!
+We've started working on Smol Arm Dynamics (SAD), a little tracked robot with a four-servo arm on top.
 
-We're a student-led team building a mobile robotic arm, including a two-tread platform, four-servo arm, and embedded wireless control.
+This week we got the first MG996R servo moving from a FlySky controller through an Arduino Uno.
 
-Our first hands-on milestone: a FlySky transmitter now controls an MG996R servo through an Arduino Uno.
+It took us longer than expected because the Arduino was reading the joystick and printing the right angles, but the servo wouldn't move at all. We eventually found the issue: we hadn't connected the buck converter's ground to the Arduino ground.
 
-Our first attempt didn't move—even though the serial readings and target angles were correct. The problem turned out to be a missing common ground between our separate servo buck converter and Arduino. Once connected, the servo responded to the joystick.
+One wire later, it worked.
 
-Next: test incremental hold-position control, add the other three servos and validate the tread drive system.
+Next we're trying to make the servo stay at its last position when we release the joystick, then we'll work on the other joints and the treads.
 
-We plan to share both engineering wins and lessons along the way.
+We'll post the progress here as we go.
 
-#Robotics #Mechatronics #Arduino #EmbeddedSystems
+#Robotics #Arduino #Mechatronics
 
-**Before publishing:** add authentic test video and get team approval.
+Before posting: add a real video and check with the team.
