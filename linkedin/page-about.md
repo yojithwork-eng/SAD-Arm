@@ -1,9 +1,9 @@
-# LinkedIn Page About (DRAFT, not published)
+# LinkedIn about text (draft, not posted)
 
-**Smol Arm Dynamics (SAD)** is a student-led robotics development initiative working on a remotely controlled, programmable mobile robotic arm.
+Smol Arm Dynamics (SAD) is our student robotics project. We're building a small tracked robot with a four-servo arm that we can drive and control using a FlySky remote and Arduino.
 
-Our prototype combines a tracked mobile platform, four MG996R servos, Arduino-based embedded control and FlySky wireless communication. We share experiments and lessons across mechanical design, electronics, power management and robotics programming.
+Right now we're testing the electronics piece by piece. The first MG996R servo is working with the joystick, and we're figuring out the rest of the arm and drive setup.
 
-**Current stage:** subsystem prototyping and testing; not yet a completed robot or incorporated commercial company.
+We're using this page to share what we're building, the stuff that breaks, and how we fix it.
 
-Obtain team approval before publishing this copy.
+Still an early prototype, not a finished product.
