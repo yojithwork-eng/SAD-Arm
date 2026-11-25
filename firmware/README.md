@@ -1,10 +1,12 @@
-# Firmware status
+# Arduino code
 
-The exact original tested Arduino IDE sketch for wireless servo position control has **not** been supplied as a source file. The team's test confirmed CH1 PWM receiver signal at A0 and servo signal on D8, but example files below are not substitutes for the original sketch.
+We're using an Uno, FlySky receiver and MG996R servos.
 
-- examples/pwm_channel_monitor: reconstructed diagnostic example, **not verified original**.
-- examples/incremental_servo1_draft: proposed Option B hold-position controller, **not physically tested**.
+- [CH1 receiver test](examples/pwm_channel_monitor/pwm_channel_monitor.ino): reads FlySky CH1 on **A0**, prints values to Serial Monitor at **115200**. This is a recreated example, not the exact file we used on the bench.
+- [Incremental servo draft](examples/incremental_servo1_draft/incremental_servo1_draft.ino): moves Servo 1 on **D8** while the joystick is held, stops commanding new positions when released. **Not tested on hardware yet.**
 
-Wire Servo 1 orange to D8; power red/brown from an independent buck set initially near 5V; **buck OUT-minus must connect to Uno GND**. Receiver CH1 S goes to Uno A0; for the bench test receiver is powered by the USB-powered Uno. All power wiring must be fused, inspected, and insulated. Do not connect servo power to Uno 5V.
+For the receiver-only test, power the receiver from the USB-powered Uno's 5V/GND, with CH1 signal on A0. Leave motor and servo power disconnected.
 
-Next: save exact verified code, pin mapping, output measurements and demo. Then test Option B unloaded.
+For a servo test, the servo gets its power from its own regulated buck (initially 5.0V), not the Arduino. **Buck OUT− must also go to Arduino GND** or the servo signal won't work. Make sure the LiPo wiring is fused and safe before powering anything.
+
+We still need to save the *actual* working joystick-to-servo code from Arduino IDE here.
