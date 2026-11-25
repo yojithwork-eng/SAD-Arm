@@ -1,41 +1,42 @@
-# System architecture
+# How everything connects
 
-## Control path
+This is the rough system layout, **not a final wiring diagram we can safely power up without checking**.
+
+## Signals
+
 ```mermaid
 flowchart LR
  TX[FlySky FS-i6X] -. radio .-> RX[FS-iA10B]
- RX -->|CH1 PWM to Uno A0 verified| UNO[Arduino Uno]
- RX -.->|i-BUS SERVO to Uno D0/RX planned| UNO
+ RX -->|CH1 PWM to A0 works| UNO[Arduino Uno]
+ RX -.->|i-BUS to D0/RX later| UNO
  UNO -->|D8–D11| ARM[4 MG996R servos]
  UNO -->|D2–D7| L[L298N]
  L --> LM[Left tread motor]
  L --> RM[Right tread motor]
 ```
 
-## Power path
+## Power
+
 ```mermaid
 flowchart TD
- BAT[7.4V nominal 2S LiPo] --> F[Deans adapter + correctly sized fuse]
- F --> P[Positive power distribution]
- BAT --> N[Negative power distribution]
- P --> B1[Buck 1 servo 1]
- P --> B2[Buck 2 servo 2]
- P --> B3[Buck 3 servo 3]
- P --> B4[Buck 4 servo 4]
- P --> B5[Buck 5 Uno and receiver]
- P --> L[L298N motor supply]
+ BAT[7.4V 2S LiPo] --> F[Deans plug + correctly sized fuse]
+ F --> P[Battery positive distribution]
+ BAT --> N[Battery negative / common ground]
+ P --> B1[Buck 1 / Servo 1]
+ P --> B2[Buck 2 / Servo 2]
+ P --> B3[Buck 3 / Servo 3]
+ P --> B4[Buck 4 / Servo 4]
+ P --> B5[Buck 5 / Uno + receiver]
+ P --> L[L298N motor power]
  N --> B1 & B2 & B3 & B4 & B5 & L
  B1 --> S1[Servo 1]
  B2 --> S2[Servo 2]
  B3 --> S3[Servo 3]
  B4 --> S4[Servo 4]
- B5 --> U[Arduino + FlySky]
- L --> M[Two tread motors]
+ B5 --> U[Uno + receiver]
+ L --> M[Two drive motors]
 ```
 
-**Architecture illustration only**, not verified connection-by-connection. Each servo receives both OUT+ and OUT− from its respective buck and a separate signal from Uno. All signal grounds share the battery-negative reference. Regulated positive outputs are not paralleled.
+Each servo gets both + and − from **its own** buck, and the signal comes from the Uno. The Arduino needs a common ground with the bucks. Don't combine different bucks' positive outputs.
 
-## Operating modes (future)
-- **Drive:** differential motion of two treads, arm maintains its commanded positions.
-- **Arm:** motors disabled, joystick deflection commands incremental joint motion; centered stick holds last position.
-- **Safety:** radio-signal-loss motor stop, motor disable when switching modes, travel limits, LiPo undervoltage protection.
+The plan is to have **drive mode** for the treads and **arm mode** for the four servos. In arm mode we want the joystick to move a joint and leave it where it is when released. That's still to be coded and tested. The finished code also needs to stop the drive motors if we lose radio contact.
