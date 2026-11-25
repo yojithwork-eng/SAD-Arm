@@ -5,7 +5,8 @@
 - [x] Move MG996R Servo 1 using D8 (about 60–120°).
 - [x] Fix the missing buck OUT− → Arduino GND connection.
 - [ ] Add the actual working sketch and video.
-- [ ] Try incremental control so releasing the stick holds the servo angle.
+- [x] Incremental control passed four bench checks (reported Nov 25). Releasing the stick holds the servo angle.
+- [ ] Save the exact sketch flashed during that test and measure the buck under load.
 
 ## Full arm
 - [ ] Connect Servo 2, 3 and 4 (D9, D10, D11), one at a time.
