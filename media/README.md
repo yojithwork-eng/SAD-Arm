@@ -1,10 +1,7 @@
-# Build photos and videos
+# Photos and videos
 
-Add real annotated wiring photos, short demo footage, and multimeter measurements. Large files can stay in private shared storage, linked from the build log.
+Put actual test videos, wiring photos and voltage readings here, or link to them from the build logs if they're too big.
 
-Suggested names:
-- 2026-11-25-servo1-flysky-demo.mp4
-- 2026-11-25-common-ground-wiring.jpg
-- 2026-11-25-buck-voltage-under-load.jpg
+First thing to add: a clip of the FlySky joystick moving Servo 1 on Nov 25, plus a photo showing the missing-ground fix.
 
-Do not confuse illustrations with proven circuit wiring. Get teammate approval before public posting.
+Ask everyone before sharing photos of the team publicly.
