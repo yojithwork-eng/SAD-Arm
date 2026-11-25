@@ -9,7 +9,8 @@
 - [ ] Save the exact sketch flashed during that test and measure the buck under load.
 
 ## Full arm
-- [ ] Connect Servo 2, 3 and 4 (D9, D10, D11), one at a time.
+- [x] Servo 2 on D9 works alongside Servo 1 on D8 using FlySky PPM (signal D2).
+- [ ] Connect Servo 3 and 4 (D10, D11), one at a time.
 - [ ] Measure buck output while the servos move.
 - [ ] Work out the brackets, joint limits and whether the motors have enough torque.
 
