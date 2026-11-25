@@ -3,7 +3,7 @@
 We're using an Uno, FlySky receiver and MG996R servos.
 
 - [CH1 receiver test](examples/pwm_channel_monitor/pwm_channel_monitor.ino): reads FlySky CH1 on **A0**, prints values to Serial Monitor at **115200**. This is a recreated example, not the exact file we used on the bench.
-- [Incremental servo draft](examples/incremental_servo1_draft/incremental_servo1_draft.ino): moves Servo 1 on **D8** while the joystick is held, stops commanding new positions when released. **Not tested on hardware yet.**
+- [Incremental servo draft](examples/incremental_servo1_draft/incremental_servo1_draft.ino): moves Servo 1 on **D8** while the joystick is held, stops commanding new positions when released. **Incremental behavior has since passed the user's bench test, but the exact sketch flashed to the board hasn't been uploaded to GitHub yet.**
 
 For the receiver-only test, power the receiver from the USB-powered Uno's 5V/GND, with CH1 signal on A0. Leave motor and servo power disconnected.
 
