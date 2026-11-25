@@ -12,7 +12,8 @@ Don't mark a test done just because the Serial Monitor prints something. We want
 - [ ] Save the exact `.ino` from Arduino IDE and a clip of the working servo.
 - [ ] Measure 5V buck output at rest and while moving. Check heat.
 - [x] Option B: user reported all four bench checks passed (both directions, holds position at center, smooth motion without excessive buzzing/heating). Exact flashed sketch and measured angles still need documenting.
-- [ ] Test the other three servos with their own buck converters.
+- [x] Servo 2 works with Servo 1 under FlySky PPM control. User confirmed both respond properly.
+- [ ] Test Servos 3 and 4 with their own buck converters.
 - [ ] Find the yellow motors' ratings and check the L298N jumper setup.
 - [ ] Test both treads lifted off the floor.
 - [ ] Verify fuse, battery connections, low-voltage protection and Uno power isolation.
