@@ -1,0 +1,14 @@
+*.hex
+*.elf
+*.bin
+build/
+.pio/
+.vscode/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
