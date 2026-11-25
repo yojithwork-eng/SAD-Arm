@@ -1,22 +1,22 @@
-# Electrical, LiPo and mechanism safety checklist
+# Before plugging in the battery
 
-**This is a pre-power checklist, not a declaration that the assembled robot is safe.**
+Keeping this checklist here because it's way too easy to miss one wire.
 
-- [ ] Disconnect LiPo before soldering, rearranging wiring or plugging connectors
-- [ ] Use main LiPo discharge connector; never use the JST-XH balance lead for servo/drive current
-- [ ] Install correctly sized inline fuse near battery positive terminal
-- [ ] Check battery polarity, every regulator IN+/IN− and OUT+/OUT−
-- [ ] Verify wire cross-section, connector ratings, insulation and strain relief for expected current
-- [ ] Separate positive and negative branches; no exposed conductive ends or stray wire strands
-- [ ] Set/measure servo buck outputs (initial 5.0V) **before connecting servos**
-- [ ] Check output voltage during motion, not just unloaded
-- [ ] Common grounds connected; do not join separate buck positive outputs
-- [ ] No high-current wiring through solderless breadboard, Uno headers or signal ground jumpers
-- [ ] Arduino external 5V cannot backfeed USB: arrange safe isolation
-- [ ] Understand L298N regulator-enable and PWM enable jumpers
-- [ ] Verify yellow motor voltage rating and stall current before direct LiPo feed
-- [ ] Test servos without horns/linkages and motors with treads clear of surfaces initially
-- [ ] Implement radio-loss stop and battery undervoltage plan before mobile operation
-- [ ] Verify 2S-compatible balance charging; charge attended on suitable nonflammable surface
+- [ ] Unplug the LiPo before soldering or moving connections.
+- [ ] Use the main Deans battery leads, not the white balance plug, for powering the robot.
+- [ ] Have a correctly sized fuse close to battery positive.
+- [ ] Check + and − on the battery, each buck input and each buck output.
+- [ ] No exposed copper, stray strands or loose wires. Secure the connectors.
+- [ ] Wire gauge and connector current ratings actually match the load.
+- [ ] Set the servo bucks to 5.0V initially and **measure them before plugging servos in**.
+- [ ] Measure again while servos are moving, not just with nothing connected.
+- [ ] Buck OUT− and Arduino GND connected. All grounds common.
+- [ ] **Don't connect the positive outputs of different bucks together.**
+- [ ] No servo or motor power through the breadboard or Arduino.
+- [ ] Work out the Arduino external 5V/USB isolation before using buck #5.
+- [ ] Check the L298N jumpers and the yellow motors' actual ratings.
+- [ ] Test servos without arm links and treads with the robot off the ground.
+- [ ] Have a plan for remote signal loss, low battery and emergency power-off.
+- [ ] Verify the 2S balance charger. Charge attended on a suitable nonflammable surface.
 
-**Caution:** An LM2596 advertised 3A rating does not ensure 3A continuous in an assembled module. A 2S pack can sag below the regulator headroom required. Do not test by deliberately shorting the pack or stalling actuators.
+The LM2596 boards saying “3A” doesn't mean they can supply 3A continuously in our setup. Also, they're step-down only, so the 6–5V output may not stay regulated as the 2S battery gets low. Never intentionally short the battery or stall a servo to test it.
