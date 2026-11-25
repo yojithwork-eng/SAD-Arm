@@ -1,20 +1,21 @@
-# Test plan
+# Tests
 
-Only physical evidence establishes pass/fail. Disconnect power before changing connections.
+Don't mark a test done just because the Serial Monitor prints something. We want to see the part actually work.
 
-## Verified by team report (2026-11-25)
-- [x] Blink uploaded to Uno after removing i-BUS data wire from D0/RX.
-- [x] FlySky receiver CH1 PWM on A0 changes approximately 1000–2000 us with joystick.
-- [x] MG996R Servo 1 physically moved on D8 across commanded ~60–120 degrees after connecting buck OUT-minus to Arduino GND.
+## Done (Nov 25, 2026)
+- [x] Blink uploaded on Uno. Had to disconnect FlySky i-BUS from D0/RX to fix the upload errors.
+- [x] FlySky CH1 on Uno A0 reads about 1000–2000 µs as the joystick moves.
+- [x] MG996R on D8 moves when controlled by the joystick, around the commanded 60–120° range.
+- [x] Fixed it by connecting buck OUT− to Uno GND.
 
-## Not verified yet
-- [ ] Save exact working Arduino IDE sketch and a short demonstration video.
-- [ ] Record buck output voltage no-load and while servo moves; check buck and wires for heating.
-- [ ] With horn removed, test incremental control: stick deflected moves servo, center holds position.
-- [ ] Validate servo 2–4 individually, each separate buck and common ground.
-- [ ] Verify yellow motor rated voltage, stall current and L298N regulator jumper.
-- [ ] Test each tread lifted off ground.
-- [ ] Validate fuse, power distribution, LiPo cutoff and USB/external 5V isolation.
-- [ ] Test mode switching, loss-of-radio failsafe and full mechanical integration.
+## Still to test
+- [ ] Save the exact `.ino` from Arduino IDE and a clip of the working servo.
+- [ ] Measure 5V buck output at rest and while moving. Check heat.
+- [ ] Try Option B with the horn off: hold the stick to move, center it to stay put.
+- [ ] Test the other three servos with their own buck converters.
+- [ ] Find the yellow motors' ratings and check the L298N jumper setup.
+- [ ] Test both treads lifted off the floor.
+- [ ] Verify fuse, battery connections, low-voltage protection and Uno power isolation.
+- [ ] Test radio loss, drive/arm switching and the assembled robot.
 
-Log date, software commit, specific wiring, measured values, errors and evidence for each test.
+When something fails, write down the exact wiring, voltage readings, code version and what happened.
