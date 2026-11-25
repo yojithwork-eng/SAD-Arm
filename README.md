@@ -1,67 +1,34 @@
-# SAD — Smol Arm Dynamics | Mobile Robotic Arm
+# SAD-Arm
 
-> **Status:** Active student-built robotics prototype • Updated 2026-11-25  
-> **Repository visibility:** Private while the team reviews the work.
+We're building a small tracked robot with a 4-servo arm on top. The plan is to drive it around with a FlySky remote, move the arm, and eventually save a few automatic movements.
 
-## Mission
+It's still pretty early. Right now **one MG996R servo works with the joystick** through an Arduino Uno. The tracks and the other three servos aren't hooked up yet.
 
-Build a remote-controlled, programmable robotic arm mounted on a two-tread mobile chassis, and document the electrical, mechanical and embedded-software development from first tests to integrated demonstrations.
+## What we're using
 
-**Not a finished robot or commercially available product.** This repository is the engineering source of truth, separate from the SAD website.
+Arduino Uno, FlySky FS-i6X + FS-iA10B, four MG996R servos, two DC gear motors, L298N motor driver, a 2S (7.4V) LiPo, and five LM2596 buck converters (four for servos, one planned for the Arduino and receiver).
 
-## Architecture
+## Trying the code
 
-| Subsystem | Hardware | Status |
-|---|---|---|
-| Controller | Arduino Uno R3 | Working for bench test |
-| Radio | FlySky FS-i6X and FS-iA10B | Six receiver PWM channels previously tested |
-| Arm | 4 × MG996R servos (1 spare) | Servo 1 wirelessly controlled, 3 pending |
-| Drive | Two yellow brushed DC gear motors, two tracks, L298N | Not integrated; motor ratings unverified |
-| Power | 7.4V 2000mAh 2S LiPo (25C), 5 × LM2596 | Final power system unverified |
+You'll need [Arduino IDE](https://www.arduino.cc/en/software/) and an Uno.
 
-### Verified breakthrough — November 25, 2026
+1. Plug in the Uno over USB and select **Arduino Uno** and its port.
+2. For a **receiver-only** test, open [the CH1 reader](firmware/examples/pwm_channel_monitor/pwm_channel_monitor.ino). Connect FlySky receiver CH1 signal to **A0**, receiver 5V/GND to the USB-powered Uno. Leave the LiPo, servo and motor driver disconnected.
+3. Upload it, open Serial Monitor at **115200**, and move the joystick. CH1 should change around 1000–2000 µs.
 
-FlySky receiver **CH1 PWM → Arduino A0 → Servo 1 signal D8** successfully moved the MG996R approximately **60–120°**. The Arduino was initially displaying correct commands but the servo stayed stationary; connecting the converter's **OUT− to Arduino GND** established the missing common signal reference and solved it.
+For the **servo test**, use the wiring in [wiring notes](docs/wiring-and-pinout.md): servo signal on **D8**, servo power from its own 5.0V buck, and **buck OUT− tied to Arduino GND**. The battery wiring has to be fused, insulated and checked with a meter first. Don't run servo power through the Uno or a breadboard.
 
-The tested sketch currently uses **absolute position** (stick springs to center → servo returns toward 90°). The team has decided that the finished arm should use **incremental control (Option B)** (stick deflection causes motion; released stick holds its last commanded position). That feature has **not** yet been tested.
+There's also an [incremental-control draft](firmware/examples/incremental_servo1_draft/incremental_servo1_draft.ino) for moving the servo while you hold the stick and keeping its position when you let go. **We haven't tested that code on the real servo yet.** Our exact original working sketch still needs to be saved here.
 
-## Electrical overview
+## Where we're at
 
-```mermaid
-flowchart TD
-    TX[FlySky FS-i6X transmitter] -. wireless .-> RX[FS-iA10B receiver]
-    RX -->|CH1 PWM to A0: bench-tested| UNO[Arduino Uno]
-    UNO -->|D8, D9, D10, D11| S[4 MG996R servo signals]
-    UNO -->|D2-D7| L[L298N motor driver]
-    L --> M[2 brushed tread motors]
-    BAT[2S LiPo 7.4V] --> F[Fused DC distribution: still to verify]
-    F --> B[4 independent LM2596 servo supplies]
-    F --> LG[5th LM2596 logic supply]
-    F --> L
-    B --> S
-    LG --> UNO
-    LG --> RX
-```
+- [x] FlySky CH1 values show up on Arduino A0.
+- [x] First servo moves about 60–120° from joystick input.
+- [x] Found the problem when it wouldn't move: missing common ground.
+- [ ] Save the exact working sketch and video.
+- [ ] Try incremental control, then the other three servos.
+- [ ] Get both treads working and put the whole robot together.
 
-This is a **system-level architecture diagram, not a fully validated wiring schematic**. All grounds must share a reference, **never combine separate regulator positive outputs**, and never run servo/motor power through an Arduino 5V pin or breadboard.
+I've kept the [build log](docs/build-logs/2026-11-25-first-wireless-servo.md), [parts list](docs/hardware-inventory.md), [wiring notes](docs/wiring-and-pinout.md), and [to-do issues](../../issues) here so we can pick up where we left off.
 
-## Start here
-
-- [Hardware inventory](docs/hardware-inventory.md)
-- [Verified test and planned pin map](docs/wiring-and-pinout.md)
-- [System architecture](docs/system-architecture.md)
-- [First working servo engineering log](docs/build-logs/2026-11-25-first-wireless-servo.md)
-- [Safety checklist](docs/safety-checklist.md)
-- [Build and test roadmap](docs/roadmap.md)
-- [Firmware: tested vs draft](firmware/README.md)
-- [Open technical questions](docs/open-questions.md)
-- [Team contribution guide](CONTRIBUTING.md)
-- [GitHub Issues backlog](../../issues)
-
-## Team workflow
-
-After each build session: save a dated log (goal, exact wiring and code, measurement, result, troubleshooting and next test); commit the **actual verified** firmware; update test evidence and relevant issues. Do not claim a milestone is tested without physical verification. Ask teammates before publishing their names, photos, or the repository.
-
-## Critical safety notes
-
-Use an appropriately fused and insulated battery distribution with correctly rated connectors and wire. Do not short LiPo output or use its JST balance plug for motor power. Measure buck voltages before connecting electronics; check voltage **under load** as well. Verify motor voltage/current and L298N jumpers before powering drive motors. A 2S LiPo may drop below the LM2596's needed voltage headroom. Arrange Arduino external 5V/USB isolation before integrating the fifth regulator.
+This is a work in progress. Check the [power/safety notes](docs/safety-checklist.md) before connecting the LiPo.
