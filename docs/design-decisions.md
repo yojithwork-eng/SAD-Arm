@@ -1,16 +1,14 @@
-# Design decisions
+# Why we're doing it this way
 
-| Decision | Rationale | Status |
-|---|---|---|
-| Four arm servos rather than five | Use existing five LM2596 converters: four arm supplies + one logic supply | Selected |
-| Dedicated buck per MG996R | Avoid sending servo current through Uno/breadboard | Selected; load performance to verify |
-| Fifth LM2596 supplies Uno + receiver | Separate logic supply | Planned; USB power isolation required |
-| FlySky receiver CH1 PWM to Uno A0 | Simple test and serial debugging without D0/RX conflict | **Tested successfully** |
-| Receiver i-BUS SERVO to Uno D0/RX | Fewer channel wires in final build | Planned, not tested |
-| Servo signals D8, D9, D10, D11 | Dedicated outputs on Uno | D8 tested, rest planned |
-| L298N control ENA D5, IN1 D2, IN2 D3, IN3 D4, IN4 D7, ENB D6 | Reserve PWM for speed | Planned, motors not validated |
-| **Option B incremental control** | Release joystick → joint holds last commanded position | Chosen; code not yet physically verified |
-| Lever connectors / insulated fused distribution | Avoid high-current breadboard supply | Bench parts seen; final protection unverified |
-| Private GitHub development repository | Team review before public claims or sharing | Adopted |
+Just keeping track so we don't forget why the wiring changed.
 
-Record changes, tests and reasons here; do not silently overwrite old design decisions.
+- **4 servos, 5 buck converters:** one converter per MG996R, plus a fifth planned for the Arduino and receiver. We have one spare servo.
+- **Servo power stays separate:** don't run MG996R current through the Arduino or breadboard. We still need to check whether each LM2596 can handle the real load.
+- **FlySky CH1 → A0 for now:** this works. We tried i-BUS on D0/RX but it got in the way of USB uploads; we haven't decoded i-BUS successfully yet.
+- **Servo signal pins:** D8, D9, D10, D11. Only D8 has been tested.
+- **L298N pins:** ENA D5, IN1 D2, IN2 D3, IN3 D4, IN4 D7, ENB D6. Still need to test both tread motors and check motor ratings.
+- **Option B for the arm:** push the joystick to rotate a joint, let go to keep the angle. Chosen, **not tested yet**.
+- **Battery wiring:** fused/insulated 7.4V distribution to five bucks + L298N. We have lever connectors, but haven't verified the finished harness or fuse size.
+- **Arduino power:** fifth buck would supply 5V logic. Need to sort out USB backfeeding first.
+
+For the first servo test we powered the Uno and receiver by USB and the servo from a separate LM2596. Buck **OUT− must connect to Uno GND** or the signal won't have a common reference.
