@@ -1,34 +1,19 @@
-# SAD build log — YYYY-MM-DD — Short title
+# YYYY-MM-DD — what we worked on
 
-**Participants:**  
-**Status:** Planned / tested / blocked  
+**Goal:** 
 
-## Objective
-What one thing were we attempting?
+**Setup:** Parts, pin numbers, power source, code file/commit.
 
-## Hardware and wiring
-Part numbers, exact pins, power configuration, diagram/photo.
+**What we tried:**
+1. 
+2. 
 
-## Software
-Source filename and commit; library versions; board and upload port.
+**What actually happened:** Include errors, weird noises, numbers from the meter or Serial Monitor.
 
-## Measurements
-Voltage at rest/under load; relevant pulse widths, currents, temperatures.
+**Fix / what we learned:** 
 
-## Procedure
-Numbered actions actually performed.
+**Before powering anything:** Fuse, polarity, loose strands, wiring, moving parts.
 
-## Observations
-What happened? Include unexpected results and failures.
+**Proof:** Photo, video or log link.
 
-## Root cause and fix
-Document what was changed and what evidence supports the conclusion.
-
-## Safety checks
-Fuse, shorts, insulation, wiring strain relief, unloaded mechanical test, power-off plan.
-
-## Evidence
-Photos, short clips and serial output; links if stored separately.
-
-## Next action
-One specific test plus owner (only with agreement).
+**Next time:** 
