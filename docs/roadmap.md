@@ -1,31 +1,31 @@
-# SAD engineering roadmap
+# What's next
 
-## Milestone 1 — One wireless servo
-- [x] FlySky PWM receiver tested and Arduino receives CH1 on A0
-- [x] MG996R Servo 1 follows stick using D8, approximately 60–120°
-- [x] Resolve missing common ground between buck OUT− and Uno GND
-- [ ] Preserve exact working firmware, voltage readings and demo video
-- [ ] Test **Option B incremental hold-position control** on unloaded servo
+## One servo
+- [x] Read FlySky CH1 on Arduino A0.
+- [x] Move MG996R Servo 1 using D8 (about 60–120°).
+- [x] Fix the missing buck OUT− → Arduino GND connection.
+- [ ] Add the actual working sketch and video.
+- [ ] Try incremental control so releasing the stick holds the servo angle.
 
-## Milestone 2 — Four-servo arm
-- [ ] Test servos 2–4 individually (signals D9, D10, D11)
-- [ ] Measure buck regulation during realistic motion/current
-- [ ] Validate bracket fits, mechanical range and joint torque
+## Full arm
+- [ ] Connect Servo 2, 3 and 4 (D9, D10, D11), one at a time.
+- [ ] Measure buck output while the servos move.
+- [ ] Work out the brackets, joint limits and whether the motors have enough torque.
 
-## Milestone 3 — Two-tread drive
-- [ ] Identify motor rated voltages, no-load and stall currents
-- [ ] Verify L298N current and logic jumper configuration
-- [ ] Drive each motor with treads safely lifted
-- [ ] Program throttle, steering, acceleration limiting
+## Treads
+- [ ] Identify the yellow motors' rated voltage and stall current.
+- [ ] Check L298N jumper setup and driver limits.
+- [ ] Test both motors with the robot lifted off the ground.
+- [ ] Add steering and smoother acceleration.
 
-## Milestone 4 — Integrated operation
-- [ ] Complete fused battery distribution, wiring and mechanical mounting
-- [ ] Verify fifth buck/Uno/receiver power and USB isolation
-- [ ] Select safe receiver connection scheme (PWM vs i-BUS)
-- [ ] Implement drive/arm switching and failure handling
-- [ ] Implement LiPo protection, radio-loss failsafe and emergency power-off
+## Put it together
+- [ ] Finish the fused, insulated battery wiring.
+- [ ] Set up buck #5 for Arduino + receiver power without USB backfeeding.
+- [ ] Decide whether to stick with PWM or switch to i-BUS.
+- [ ] Add drive/arm mode switching and radio-loss handling.
+- [ ] Add a low-battery cutoff/warning and a way to shut power off quickly.
 
-## Milestone 5 — Demonstration
-- [ ] Capture physical arm and drive test footage
-- [ ] Document performance, remaining risks and team contributions
-- [ ] Approve external publication and publish project progress
+## Demo
+- [ ] Get the arm and treads working together.
+- [ ] Record a real demo and write up what worked (and what didn't).
+- [ ] Share the results after the team agrees.
