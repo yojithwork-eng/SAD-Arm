@@ -18,7 +18,7 @@ You'll need [Arduino IDE](https://www.arduino.cc/en/software/) and an Uno.
 
 For the **servo test**, use the wiring in [wiring notes](docs/wiring-and-pinout.md): servo signal on **D8**, servo power from its own 5.0V buck, and **buck OUT− tied to Arduino GND**. The battery wiring has to be fused, insulated and checked with a meter first. Don't run servo power through the Uno or a breadboard.
 
-There's also an [incremental-control draft](firmware/examples/incremental_servo1_draft/incremental_servo1_draft.ino) for moving the servo while you hold the stick and keeping its position when you let go. **We haven't tested that code on the real servo yet.** Our exact original working sketch still needs to be saved here.
+We also got **incremental joystick control (Option B)** working on Servo 1: push the stick to move it, release to hold the angle. The [draft sketch](firmware/examples/incremental_servo1_draft/incremental_servo1_draft.ino) was our starting point, but we still need to save the exact `.ino` that was uploaded and tested.
 
 ## Where we're at
 
@@ -26,7 +26,8 @@ There's also an [incremental-control draft](firmware/examples/incremental_servo1
 - [x] First servo moves about 60–120° from joystick input.
 - [x] Found the problem when it wouldn't move: missing common ground.
 - [ ] Save the exact working sketch and video.
-- [ ] Try incremental control, then the other three servos.
+- [x] Test incremental control: Servo 1 moves and holds when the stick is released (reported bench test).
+- [ ] Hook up and test Servo 2 on D9, then the remaining servos.
 - [ ] Get both treads working and put the whole robot together.
 
 I've kept the [build log](docs/build-logs/2026-11-25-first-wireless-servo.md), [parts list](docs/hardware-inventory.md), [wiring notes](docs/wiring-and-pinout.md), and [to-do issues](../../issues) here so we can pick up where we left off.
