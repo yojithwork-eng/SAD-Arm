@@ -11,7 +11,7 @@ Don't mark a test done just because the Serial Monitor prints something. We want
 ## Still to test
 - [ ] Save the exact `.ino` from Arduino IDE and a clip of the working servo.
 - [ ] Measure 5V buck output at rest and while moving. Check heat.
-- [ ] Try Option B with the horn off: hold the stick to move, center it to stay put.
+- [x] Option B: user reported all four bench checks passed (both directions, holds position at center, smooth motion without excessive buzzing/heating). Exact flashed sketch and measured angles still need documenting.
 - [ ] Test the other three servos with their own buck converters.
 - [ ] Find the yellow motors' ratings and check the L298N jumper setup.
 - [ ] Test both treads lifted off the floor.
