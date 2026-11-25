@@ -2,7 +2,7 @@
 
 We're building a small tracked robot with a 4-servo arm on top. The plan is to drive it around with a FlySky remote, move the arm, and eventually save a few automatic movements.
 
-It's still pretty early. Right now **one MG996R servo works with the joystick** through an Arduino Uno. The tracks and the other three servos aren't hooked up yet.
+It's still early, but **two MG996R servos now work independently** from the FlySky remote using PPM and an Arduino Uno. The other two servos and tracks aren't hooked up yet.
 
 ## What we're using
 
@@ -27,7 +27,8 @@ We also got **incremental joystick control (Option B)** working on Servo 1: push
 - [x] Found the problem when it wouldn't move: missing common ground.
 - [ ] Save the exact working sketch and video.
 - [x] Test incremental control: Servo 1 moves and holds when the stick is released (reported bench test).
-- [ ] Hook up and test Servo 2 on D9, then the remaining servos.
+- [x] Servo 2 on D9 works independently alongside Servo 1 with FlySky PPM on D2.
+- [ ] Add and test Servo 3 on D10, then Servo 4 on D11.
 - [ ] Get both treads working and put the whole robot together.
 
 I've kept the [build log](docs/build-logs/2026-11-25-first-wireless-servo.md), [parts list](docs/hardware-inventory.md), [wiring notes](docs/wiring-and-pinout.md), and [to-do issues](../../issues) here so we can pick up where we left off.
