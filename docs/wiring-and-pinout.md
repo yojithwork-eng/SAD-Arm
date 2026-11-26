@@ -31,7 +31,13 @@ That last ground connection was what we missed at first. Arduino was calculating
 | D10 | Servo 3 |
 | D11 | Servo 4 |
 
-The receiver PWM wire on A0 is what actually works right now. That's different from the final i-BUS idea.
+The earlier one-servo test used **PWM CH1 on A0**. The current two-servo test uses **PPM signal on D2** (receiver + from Arduino USB 5V, receiver − to Arduino GND). FlySky CH1 and CH2 now control Servos 1 and 2 with Option B, and both work. PPM on D2 **conflicts with the planned L298N IN1 pin**; resolve that when the motor driver is connected. The i-BUS idea is still untested.
+
+## Adding Servo 3 and Servo 4 (not wired/tested yet)
+
+Buck #3 and buck #4 each need four connections: IN+ and IN− to fused battery distribution, OUT+ to that servo's red wire, and OUT− to its brown/black return. Each buck OUT− also needs a shared **signal ground connection** to Arduino GND. Servo 3 signal goes to **D10** and Servo 4 signal to **D11**.
+
+Unplug LiPo and USB before soldering. Insulate and strain-relieve each finished connection. Measure each buck's polarity and voltage (~5.0V initially) before attaching a servo. Keep servo return current on the buck wiring, not on the breadboard/Arduino ground leads. Each buck's **positive output must remain separate** from the other buck outputs.
 
 ## Battery power plan
 
