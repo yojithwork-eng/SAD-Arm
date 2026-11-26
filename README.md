@@ -28,7 +28,7 @@ We also got **incremental joystick control (Option B)** working on Servo 1: push
 - [ ] Save the exact working sketch and video.
 - [x] Test incremental control: Servo 1 moves and holds when the stick is released (reported bench test).
 - [x] Servo 2 on D9 works independently alongside Servo 1 with FlySky PPM on D2.
-- [ ] Add and test Servo 3 on D10, then Servo 4 on D11.
+- [ ] Solder and check buck #3/#4 power wires (IN+, IN−, OUT+, OUT−), then add Servo 3 on D10 and Servo 4 on D11 one at a time.
 - [ ] Get both treads working and put the whole robot together.
 
 I've kept the [build log](docs/build-logs/2026-11-25-first-wireless-servo.md), [parts list](docs/hardware-inventory.md), [wiring notes](docs/wiring-and-pinout.md), and [to-do issues](../../issues) here so we can pick up where we left off.
