@@ -59,7 +59,7 @@ int motorDirection[2] = {0, 0};
 unsigned long motorPauseUntil[2] = {0, 0};
 
 enum Mode { SAFE, ARM, DRIVE };
-Mode previousMode = SAFE;
+int previousMode = SAFE;
 bool visitedSafe = false;
 bool driveReady = false;
 bool armReady = false;
@@ -76,7 +76,7 @@ int stickAxis(uint16_t v) {
   return abs(offset) <= DEADZONE ? 0 : offset;
 }
 
-Mode decodeMode(uint16_t ch5) {
+int decodeMode(uint16_t ch5) {
   if (ch5 <= 1250) return SAFE;
   if (ch5 >= 1750) return DRIVE;
   if (ch5 >= 1350 && ch5 <= 1650) return ARM;
@@ -186,7 +186,7 @@ void loop() {
     armReady = driveReady = false;
     previousPair = -1;
   } else {
-    Mode mode = decodeMode(ch[4]);
+    int mode = decodeMode(ch[4]);
     if (mode != previousMode) {
       stopAllMotors();
       armReady = driveReady = false;
