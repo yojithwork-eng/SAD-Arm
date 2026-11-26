@@ -10,7 +10,10 @@
 
 ## Full arm
 - [x] Servo 2 on D9 works alongside Servo 1 on D8 using FlySky PPM (signal D2).
-- [ ] Connect Servo 3 and 4 (D10, D11), one at a time.
+- [ ] Solder wires onto LM2596 buck #3 and #4: IN+, IN−, OUT+, OUT−. Battery/USB unplugged while soldering.
+- [ ] Inspect and insulate the joints, verify input polarity and set both outputs to around 5.0V with a meter **before attaching servos**.
+- [ ] Hook up Servo 3 on D10 and Servo 4 on D11, each with its own buck supply and Arduino common ground. Test them one at a time.
+- [ ] Check the buck output voltage while servos move; don't send servo power/return current through the breadboard.
 - [ ] Measure buck output while the servos move.
 - [ ] Work out the brackets, joint limits and whether the motors have enough torque.
 
